@@ -15,7 +15,8 @@ SOURCES += \
 
 HEADERS += \
     mainwindow.h \
-    renderarea.h
+    renderarea.h \
+    shape.h
 
 FORMS += \
     mainwindow.ui

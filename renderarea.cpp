@@ -12,6 +12,7 @@ RenderArea::RenderArea(QWidget *parent) :
 
 RenderArea::~RenderArea()
 {
+    delete mShape;
     qInfo("~RenderArea()");
 }
 
@@ -23,6 +24,16 @@ QSize RenderArea::minimumSizeHint() const
 QSize RenderArea::sizeHint() const
 {
     return QSize(400, 400);
+}
+
+void RenderArea::setShape(Shape *shape)
+{
+    if (mShape == nullptr) {
+        mShape = shape;
+    } else {
+        delete mShape;
+        mShape = shape;
+    }
 }
 
 void RenderArea::paintEvent(QPaintEvent *event)

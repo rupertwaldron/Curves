@@ -18,6 +18,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnAstroid_clicked()
 {
+    this->ui->renderArea->setShape(new Astroid());
     this->ui->renderArea->setBackgroundColor(Qt::red);
     this->ui->renderArea->repaint();
 }
