@@ -14,22 +14,27 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="RenderArea" name="renderArea" native="true">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>230</y>
-      <width>131</width>
-      <height>51</height>
+      <x>160</x>
+      <y>90</y>
+      <width>391</width>
+      <height>331</height>
      </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
     </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>RenderArea</class>
+   <extends>QWidget</extends>
+   <header>renderarea.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
