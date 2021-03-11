@@ -10,19 +10,23 @@ RenderArea::RenderArea(QWidget *parent) :
     qInfo("RenderArea(QWidget *)");
 }
 
-RenderArea::~RenderArea(){
+RenderArea::~RenderArea()
+{
     qInfo("~RenderArea()");
 }
 
-QSize RenderArea::minimumSizeHint() const {
+QSize RenderArea::minimumSizeHint() const
+{
     return QSize(100, 100);
 }
 
-QSize RenderArea::sizeHint() const {
+QSize RenderArea::sizeHint() const
+{
     return QSize(400, 400);
 }
 
-void RenderArea::paintEvent(QPaintEvent *event) {
+void RenderArea::paintEvent(QPaintEvent *event)
+{
     QPainter painter(this);
     painter.setBrush(mBackgroundColor);
     painter.setRenderHint(QPainter::Antialiasing, true);
