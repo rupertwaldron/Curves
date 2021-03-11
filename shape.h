@@ -8,33 +8,48 @@ class Shape
 public:
     Shape() {qInfo("Shape()");}
     virtual ~Shape() {qInfo("~Shape()");}
+    QColor getShapeColor() {return m_color;}
+protected:
+    QColor m_color;
 };
 
 class Astroid : public Shape
 {
 public:
-    Astroid() {qInfo("Astroid()");}
+    Astroid() {
+        m_color = Qt::red;
+        qInfo("Astroid()");
+    }
     ~Astroid() {qInfo("~Astroid()");}
 };
 
 class Cycloid : public Shape
 {
 public:
-    Cycloid() {qInfo("Cycloid()");}
+    Cycloid() {
+        m_color = Qt::green;
+        qInfo("Cycloid()");
+    }
     ~Cycloid() {qInfo("~Cycloid()");}
 };
 
 class HygensCycloid : public Shape
 {
 public:
-    HygensCycloid() {qInfo("HygensCycloid()");}
+    HygensCycloid() {
+        m_color = Qt::cyan;
+        qInfo("HygensCycloid()");
+    }
     ~HygensCycloid() {qInfo("~HygensCycloid()");}
 };
 
 class HypoCycloid : public Shape
 {
 public:
-    HypoCycloid() {qInfo("HypoCycloid()");}
+    HypoCycloid() {
+        m_color = Qt::yellow;
+        qInfo("HypoCycloid()");
+    }
     ~HypoCycloid() {qInfo("~HypoCycloid()");}
 };
 

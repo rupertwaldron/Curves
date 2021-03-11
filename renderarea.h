@@ -19,7 +19,6 @@ public:
     Shape *getShape() const {return mShape;}
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
-
 signals:
 
 private:

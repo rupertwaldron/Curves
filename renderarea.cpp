@@ -39,7 +39,11 @@ void RenderArea::setShape(Shape *shape)
 void RenderArea::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
-    painter.setBrush(mBackgroundColor);
+    if (mShape != nullptr) {
+        painter.setBrush(mShape->getShapeColor());
+    } else {
+        painter.setBrush(mBackgroundColor);
+    }
     painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setPen(mShapeColor);
 
