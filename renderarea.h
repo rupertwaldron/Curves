@@ -16,6 +16,7 @@ public:
     QColor getBackgroundColor() const {return mBackgroundColor;}
     void setShape(Shape *shape);
     Shape *getShape() const {return mShape;}
+    QPainter & getPainter() {return mPainter;}
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 signals:
@@ -24,6 +25,7 @@ private:
     QColor mBackgroundColor;
     QColor mShapeColor;
     Shape *mShape{nullptr};
+    QPainter mPainter;
 };
 
 #endif // RENDERAREA_H

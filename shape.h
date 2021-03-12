@@ -2,6 +2,8 @@
 #define SHAPE_H
 
 #include <QWidget>
+#include <QPainter>
+#include "renderarea.h"
 
 class Shape
 {
@@ -9,6 +11,9 @@ public:
     Shape() {qInfo("Shape()");}
     virtual ~Shape() {qInfo("~Shape()");}
     QColor getShapeColor() {return m_color;}
+    void drawShape(QRect & canvas, QPainter & painter) {
+        painter.drawLine(canvas.bottomRight(), canvas.topLeft());
+    }
 protected:
     QColor m_color;
 private:

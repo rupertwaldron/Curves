@@ -45,6 +45,10 @@ void RenderArea::paintEvent(QPaintEvent *event)
     painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setPen(mShapeColor);
 
-    painter.drawRect(this->rect());
-    painter.drawLine(this->rect().topLeft(), this->rect().bottomRight());
+    auto canvas = this->rect();
+
+    painter.drawRect(canvas);
+    mShape->drawShape(canvas, painter);
+
+//    painter.drawLine(this->rect().topLeft(), this->rect().bottomRight());
 }
