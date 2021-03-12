@@ -5,7 +5,8 @@
 RenderArea::RenderArea(QWidget *parent) :
     QWidget(parent),
     mBackgroundColor(QColor (0, 0, 255)),
-    mShapeColor(255, 255, 255)
+    mShapeColor(255, 255, 255),
+    mShape{new Astroid()}
 {
     qInfo("RenderArea(QWidget *)");
 }
@@ -38,12 +39,9 @@ void RenderArea::setShape(Shape *shape)
 
 void RenderArea::paintEvent(QPaintEvent *event)
 {
+    Q_UNUSED(event);
     QPainter painter(this);
-    if (mShape != nullptr) {
-        painter.setBrush(mShape->getShapeColor());
-    } else {
-        painter.setBrush(mBackgroundColor);
-    }
+    painter.setBrush(mShape->getShapeColor());
     painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setPen(mShapeColor);
 

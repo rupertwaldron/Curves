@@ -11,6 +11,21 @@ public:
     QColor getShapeColor() {return m_color;}
 protected:
     QColor m_color;
+private:
+    Shape(const Shape & rhs) {
+        qInfo("Shape(const Shape &)");
+        this->m_color = rhs.m_color;
+    }
+    Shape & operator= (const Shape & rhs) {
+        qInfo("operator=(const Shape &)");
+        this->m_color = rhs.m_color;
+        return *this;
+    }
+    Shape & operator=(const Shape && rhs) {
+        qInfo("operator=(const Shape &&)");
+        this->m_color = rhs.m_color;
+        return *this;
+    }
 };
 
 class Astroid : public Shape
