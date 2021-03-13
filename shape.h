@@ -13,14 +13,12 @@ public:
     QColor getShapeColor() {return m_color;}
     void drawShape(QRect & canvas, QPainter & painter)
     {
-          QPoint center = canvas.center();
           float step = mIntervalLength / mStepCount;
-          for (float t = 0; t < mIntervalLength; t += step) {
-              QPointF point = compute_shape(t);
-              QPoint pixel;
-              pixel.setX(point.x() * mScale + center.x());
-              pixel.setY(point.y() * mScale + center.y());
-              painter.drawPoint(pixel);
+          QPoint previousPixel = calculatePoint(0, canvas);
+          for (float t = step; t < mIntervalLength; t += step) {
+              QPoint pixel = calculatePoint(t, canvas);
+              painter.drawLine(previousPixel, pixel);
+              previousPixel = pixel;
           }
     };
 protected:
@@ -44,6 +42,15 @@ private:
         this->m_color = rhs.m_color;
         return *this;
     }
+    inline QPoint calculatePoint(float t, QRect &canvas)
+    {
+        QPoint center = canvas.center();
+        QPointF point = compute_shape(t);
+        return QPoint (
+                    point.x() * mScale + center.x(),
+                    point.y() * mScale + center.y()
+                    );
+  }
 };
 
 class Line : public Shape
