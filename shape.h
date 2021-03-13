@@ -46,12 +46,29 @@ private:
     }
 };
 
+class Line : public Shape
+{
+public:
+    Line()
+    {
+        mIntervalLength = 1;
+        mScale = 50;
+        mStepCount = 128;
+        qInfo("Line()");
+    }
+    ~Line() {qInfo("~Line()");}
+private:
+    QPointF compute_shape(float t) Q_DECL_OVERRIDE
+    {
+        return QPointF(1 - t, 1 - t);
+    }
+};
+
 class Astroid : public Shape
 {
 public:
     Astroid()
     {
-        m_color = Qt::red;
         mIntervalLength = 2 * M_PI;
         mScale = 40;
         mStepCount = 256;
@@ -74,7 +91,6 @@ class Circle : public Shape
 public:
     Circle()
     {
-        m_color = Qt::magenta;
         mStepCount = 256;
         mScale = 40;
         mIntervalLength = 2 * M_PI;
@@ -97,7 +113,6 @@ class Cycloid : public Shape
 public:
     Cycloid()
     {
-        m_color = Qt::green;
         mStepCount = 128;
         mScale = 4;
         mIntervalLength = 6 * M_PI;
@@ -119,7 +134,6 @@ class HygensCycloid : public Shape
 public:
     HygensCycloid()
     {
-        m_color = Qt::blue;
         mStepCount = 256;
         mScale = 4;
         mIntervalLength = 4 * M_PI;
@@ -141,7 +155,6 @@ class HypoCycloid : public Shape
 public:
     HypoCycloid()
     {
-        m_color = Qt::black;
         mStepCount = 256;
         mScale = 15;
         mIntervalLength = 2 * M_PI;
