@@ -23,8 +23,10 @@ public:
     };
     void setScale(float scale) {mScale = scale;}
     float scale() {return mScale;}
+    void setInterval(float interval) {mIntervalLength = interval;}
+    float intervalLength() {return mIntervalLength;}
 protected:
-    QColor m_color{Qt::black};
+    QColor m_color{Qt::darkMagenta};
     float mIntervalLength{0};
     float mScale{0};
     int mStepCount{0};
