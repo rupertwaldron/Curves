@@ -21,6 +21,8 @@ public:
               previousPixel = pixel;
           }
     };
+    void setScale(float scale) {mScale = scale;}
+    float scale() {return mScale;}
 protected:
     QColor m_color{Qt::black};
     float mIntervalLength{0};

@@ -15,7 +15,7 @@ public:
     void setBackgroundColor(QColor color) {mBackgroundColor = color;}
     QColor getBackgroundColor() const {return mBackgroundColor;}
     void setShape(Shape *shape);
-    Shape *getShape() const {return mShape;}
+    Shape *shape() const {return mShape;}
     QPainter & getPainter() {return mPainter;}
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
