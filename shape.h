@@ -14,20 +14,20 @@ public:
     void drawShape(QRect & canvas, QPainter & painter)
     {
           QPoint center = canvas.center();
-          float step = intervalLength / stepCount;
-          for (float t = 0; t < intervalLength; t += step) {
+          float step = mIntervalLength / mStepCount;
+          for (float t = 0; t < mIntervalLength; t += step) {
               QPointF point = compute_shape(t);
               QPoint pixel;
-              pixel.setX(point.x() * scale + center.x());
-              pixel.setY(point.y() * scale + center.y());
+              pixel.setX(point.x() * mScale + center.x());
+              pixel.setY(point.y() * mScale + center.y());
               painter.drawPoint(pixel);
           }
     };
 protected:
     QColor m_color{Qt::black};
-    float intervalLength{0};
-    float scale{0};
-    int stepCount{0};
+    float mIntervalLength{0};
+    float mScale{0};
+    int mStepCount{0};
     virtual QPointF compute_shape(float t) = 0;
 private:
     Shape(const Shape & rhs) {
@@ -52,9 +52,9 @@ public:
     Astroid()
     {
         m_color = Qt::red;
-        intervalLength = 2 * M_PI;
-        scale = 40;
-        stepCount = 256;
+        mIntervalLength = 2 * M_PI;
+        mScale = 40;
+        mStepCount = 256;
         qInfo("Astroid()");
     }
     ~Astroid() {qInfo("~Astroid()");}
@@ -75,9 +75,9 @@ public:
     Circle()
     {
         m_color = Qt::magenta;
-        stepCount = 256;
-        scale = 40;
-        intervalLength = 2 * M_PI;
+        mStepCount = 256;
+        mScale = 40;
+        mIntervalLength = 2 * M_PI;
         qInfo("Circle()");
     }
     ~Circle() {qInfo("~Circle()");}
@@ -98,9 +98,9 @@ public:
     Cycloid()
     {
         m_color = Qt::green;
-        stepCount = 128;
-        scale = 4;
-        intervalLength = 6 * M_PI;
+        mStepCount = 128;
+        mScale = 4;
+        mIntervalLength = 6 * M_PI;
         qInfo("Cycloid()");
     }
     ~Cycloid() {qInfo("~Cycloid()");}
@@ -108,8 +108,8 @@ private:
     QPointF compute_shape(float t) Q_DECL_OVERRIDE
     {
         return QPointF(
-                    1.5 * (1 * cos(t)),
-                    1.5 * (t * sin(t))
+                    1.5 * (1 - cos(t)),
+                    1.5 * (t - sin(t))
                     );
     }
 };
@@ -120,9 +120,9 @@ public:
     HygensCycloid()
     {
         m_color = Qt::blue;
-        stepCount = 256;
-        scale = 4;
-        intervalLength = 4 * M_PI;
+        mStepCount = 256;
+        mScale = 4;
+        mIntervalLength = 4 * M_PI;
         qInfo("HygensCycloid()");
     }
     ~HygensCycloid() {qInfo("~HygensCycloid()");}
@@ -142,11 +142,19 @@ public:
     HypoCycloid()
     {
         m_color = Qt::black;
+        mStepCount = 256;
+        mScale = 15;
+        mIntervalLength = 2 * M_PI;
         qInfo("HypoCycloid()");
     }
     ~HypoCycloid() {qInfo("~HypoCycloid()");}
 private:
-    QPointF compute_shape(float t) Q_DECL_OVERRIDE {}
+    QPointF compute_shape(float t) Q_DECL_OVERRIDE {
+        return QPointF(
+                   1.5 * (2 * cos(t) + cos(2 * t)),
+                   1.5 * (2 * sin(t) - sin(2 *t))
+                    );
+    }
 };
 
 #endif // SHAPE_H
