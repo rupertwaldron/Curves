@@ -6,7 +6,7 @@ RenderArea::RenderArea(QWidget *parent) :
     QWidget(parent),
     mBackgroundColor(QColor (0, 0, 255)),
     mShapeColor(255, 255, 255),
-    mShape{new Astroid()}
+    mShape{new Circle()}
 {
     qInfo("RenderArea(QWidget *)");
 }

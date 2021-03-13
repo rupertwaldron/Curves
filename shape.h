@@ -11,9 +11,10 @@ public:
     Shape() {qInfo("Shape()");}
     virtual ~Shape() {qInfo("~Shape()");}
     QColor getShapeColor() {return m_color;}
-    virtual void drawShape(QRect & canvas, QPainter & painter) {
-        painter.drawLine(canvas.bottomRight(), canvas.topLeft());
-    }
+    virtual void drawShape(QRect & canvas, QPainter & painter) = 0;
+//    {
+//        painter.drawLine(canvas.bottomRight(), canvas.topLeft());
+//    }
 protected:
     QColor m_color;
     virtual QPointF compute_shape(float t) = 0;
@@ -66,6 +67,38 @@ private:
     }
 };
 
+class Circle : public Shape
+{
+public:
+    Circle() {
+        m_color = Qt::magenta;
+        qInfo("Circle()");
+    }
+    ~Circle() {qInfo("~Circle()");}
+    void drawShape(QRect & canvas, QPainter & painter) Q_DECL_OVERRIDE {
+        QPoint center = canvas.center();
+        int stepCount = 256;
+        float scale = 40;
+        float intervalLength = 2 * M_PI;
+        float step = intervalLength / stepCount;
+        for (float t = 0; t < intervalLength; t += step) {
+            QPointF point = compute_shape(t);
+            QPoint pixel;
+            pixel.setX(point.x() * scale + center.x());
+            pixel.setY(point.y() * scale + center.y());
+            painter.drawPoint(pixel);
+        }
+    }
+private:
+    QPointF compute_shape(float t) Q_DECL_OVERRIDE {
+        float cos_t = cos(t);
+        float sin_t = sin(t);
+        float x = 2 * cos_t;
+        float y = 2 * sin_t;
+        return QPointF(x, y);
+    }
+};
+
 class Cycloid : public Shape
 {
 public:
@@ -74,8 +107,9 @@ public:
         qInfo("Cycloid()");
     }
     ~Cycloid() {qInfo("~Cycloid()");}
+    void drawShape(QRect & canvas, QPainter & painter) Q_DECL_OVERRIDE {}
 private:
-    QPointF compute_shape(float t) {}
+    QPointF compute_shape(float t) Q_DECL_OVERRIDE {}
 };
 
 class HygensCycloid : public Shape
@@ -86,8 +120,9 @@ public:
         qInfo("HygensCycloid()");
     }
     ~HygensCycloid() {qInfo("~HygensCycloid()");}
+    void drawShape(QRect & canvas, QPainter & painter) Q_DECL_OVERRIDE {}
 private:
-    QPointF compute_shape(float t) {}
+    QPointF compute_shape(float t) Q_DECL_OVERRIDE {}
 };
 
 class HypoCycloid : public Shape
@@ -98,15 +133,10 @@ public:
         qInfo("HypoCycloid()");
     }
     ~HypoCycloid() {qInfo("~HypoCycloid()");}
+    void drawShape(QRect & canvas, QPainter & painter) Q_DECL_OVERRIDE {}
 private:
-    QPointF compute_shape(float t) {}
+    QPointF compute_shape(float t) Q_DECL_OVERRIDE {}
 };
-
-
-
-
-
-
 
 #endif // SHAPE_H
 
