@@ -41,7 +41,7 @@ void RenderArea::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
     QPainter painter(this);
-    painter.setBrush(mShape->getShapeColor());
+    painter.setBrush(getBackgroundColor());
     painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setPen(mShapeColor);
 

@@ -10,7 +10,6 @@ class Shape
 public:
     Shape() {qInfo("Shape()");}
     virtual ~Shape() {qInfo("~Shape()");}
-    QColor getShapeColor() {return m_color;}
     void drawShape(QRect & canvas, QPainter & painter)
     {
           float step = mIntervalLength / mStepCount;
@@ -25,25 +24,23 @@ public:
     float scale() {return mScale;}
     void setInterval(float interval) {mIntervalLength = interval;}
     float intervalLength() {return mIntervalLength;}
+    void setStepCount(int count) {mStepCount = count;}
+    int stepCount() {return mStepCount;}
 protected:
-    QColor m_color{Qt::darkMagenta};
     float mIntervalLength{0};
     float mScale{0};
     int mStepCount{0};
     virtual QPointF compute_shape(float t) = 0;
 private:
-    Shape(const Shape & rhs) {
+    Shape(const Shape &) {
         qInfo("Shape(const Shape &)");
-        this->m_color = rhs.m_color;
     }
-    Shape & operator= (const Shape & rhs) {
+    Shape & operator= (const Shape &) {
         qInfo("operator=(const Shape &)");
-        this->m_color = rhs.m_color;
         return *this;
     }
-    Shape & operator=(const Shape && rhs) {
+    Shape & operator=(const Shape &&) {
         qInfo("operator=(const Shape &&)");
-        this->m_color = rhs.m_color;
         return *this;
     }
     inline QPoint calculatePoint(float t, QRect &canvas)

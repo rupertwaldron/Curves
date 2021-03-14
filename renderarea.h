@@ -14,6 +14,8 @@ public:
     QSize sizeHint() const Q_DECL_OVERRIDE;
     void setBackgroundColor(QColor color) {mBackgroundColor = color;}
     QColor getBackgroundColor() const {return mBackgroundColor;}
+    void setShapeColor(QColor color) {mShapeColor = color;}
+    QColor shapeColor() const {return mShapeColor;}
     void setShape(Shape *shape);
     Shape *shape() const {return mShape;}
     QPainter & getPainter() {return mPainter;}
